@@ -72,9 +72,9 @@ def evaluate(Net, config, load_data, train, test, optim_func):
             # Test
             test_accuracy = test(config, net, testloader, device)
             print(f"Epoch: {epoch} \tTest Accuracy: {test_accuracy}")
-            df_lr = pd.concat(df_lr, pd.DataFrame(lr_list), ignore_index=True)
+            df_lr = pd.concat([df_lr, pd.DataFrame(lr_list)], ignore_index=True)
 
-            df_train_loss = pd.concat(df_train_loss, pd.DataFrame(loss_list), ignore_index=True)
+            df_train_loss = pd.concat([df_train_loss, pd.DataFrame(loss_list)], ignore_index=True)
             df_test_acc = pd.concat([df_test_acc, pd.DataFrame([{"epoch": epoch, "test_acc": test_accuracy, "train_time": epoch_time}])], ignore_index=True)
             if config["save_csv"]:
                 df_train_loss.to_csv("loss_" + csv_name, index=False)
